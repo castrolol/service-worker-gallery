@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <script src="./js/install-service.js"></script>
+
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+
+    <title>Star Wars</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .template {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-default  navbar-static-top">
+        <a class="navbar-brand" href="index.html"><i class="glyphicon glyphicon-chevron-left"></i></a>
+        <div class="container">
+            <h4>Star Wars - Photos</h4>
+        </div>
+    </nav>
+
+    <div class="loader" style="text-align: center">
+        <img src="./loader.gif" />
+    </div>
+
+    <div class="photo-container">
+
+    </div>
+
+    <div class="template">
+        <div class="col-sm-4">
+            <div class="panel panel-default card ">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Title</h3>
+                </div>
+                <div class="panel-body" style="text-align: center">
+                    <img class=" img-thumbnail photo" src="#" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/app.js"></script>
+    <script>
+        gallery.load("./data/funny.json");
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+{
+    "photos" : [
+        { 
+            "title": "Princesa Leia",
+            "image": "gallery/leia.jpg"
+        },
+        { 
+            "title": "Antes e Depois",
+            "image": "gallery/antes-e-depois.jpg"
+        },
+        { 
+            "title": "Rey",
+            "image": "gallery/rey.jpg"
+        },
+        { 
+            "title": "Han Solo",
+            "image": "gallery/han-solo.jpg"
+        },
+        { 
+            "title": "Chewie",
+            "image": "gallery/chewbacca.jpg"
+        }
+    ]
+}

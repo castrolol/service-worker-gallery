@@ -1,0 +1,24 @@
+{
+    "photos" : [
+        { 
+            "title": "Catatine",
+            "image": "gallery/catatine.jpg"
+        },
+        { 
+            "title": "Cath Vader",
+            "image": "gallery/cath-vader.jpg"
+        },
+        { 
+            "title": "Jedy",
+            "image": "gallery/phith.jpg"
+        },
+        { 
+            "title": "Dog Force",
+            "image": "gallery/jedi.jpg"
+        },
+        { 
+            "title": "PugLeia",
+            "image": "gallery/pugleia.jpg"
+        }
+    ]
+}
