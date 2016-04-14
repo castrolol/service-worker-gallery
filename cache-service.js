@@ -47,7 +47,7 @@ function fromCacheOrFetch(response) {
     //então precisamos de duas, uma para o browser e uma para o cache
     var fetchRequest = event.request.clone();
 
-    return fetch(fetchRequest).then(function() {
+    return fetch(fetchRequest).then(function(event) {
 
         //qualquer exceção, que não deve ser cacheada
         if (!response || response.status !== 200 || response.type !== 'basic') {
