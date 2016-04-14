@@ -1,5 +1,5 @@
 var CACHE_NAME = 'v1';
-var baseUrl = "/starwars/app";
+
 var urlsToCache = [
     "/",
     "/gallery.html",
@@ -18,8 +18,7 @@ var urlsToCache = [
     "/gallery/han-solo.jpg",
     "/gallery/chewbacca.jpg"
 ];
-
-urlsToCache = urlsToCache.map( x => baseUrl + x);
+ 
 
 self.addEventListener('install', function(event) {
     // Perform install steps
