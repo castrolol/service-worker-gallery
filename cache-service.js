@@ -36,7 +36,7 @@ self.addEventListener('install', function(event) {
     );
 });
 
-function fromCacheOrFetch(response) {
+function fromCacheOrFetch(event, response) {
 
     if (response) {
         return response; //veio do cache
@@ -47,7 +47,7 @@ function fromCacheOrFetch(response) {
     //então precisamos de duas, uma para o browser e uma para o cache
     var fetchRequest = event.request.clone();
 
-    return fetch(fetchRequest).then(function(event) {
+    return fetch(fetchRequest).then(function(response) {
 
         //qualquer exceção, que não deve ser cacheada
         if (!response || response.status !== 200 || response.type !== 'basic') {
@@ -75,7 +75,7 @@ self.addEventListener('fetch', function(event) {
     event.respondWith(
 
         caches.match(event.request)
-            .then(fromCacheOrFetch)
+            .then(fromCacheOrFetch.bind(this, event))
 
     );
 
