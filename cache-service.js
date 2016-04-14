@@ -1,5 +1,5 @@
 var CACHE_NAME = 'v1';
-
+var baseUrl = "/service-worker-gallery";
 var urlsToCache = [
     "/",
     "/gallery.html",
@@ -19,6 +19,7 @@ var urlsToCache = [
     "/gallery/chewbacca.jpg"
 ];
  
+urlsToCache = urlsToCache.map(x => baseUrl + x);
 
 self.addEventListener('install', function(event) {
     // Perform install steps
