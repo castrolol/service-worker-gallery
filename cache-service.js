@@ -1,7 +1,7 @@
 var CACHE_NAME = 'v1';
 var baseUrl = "/service-worker-gallery";
 var urlsToCache = [
-    "/",
+    "/index.html",
     "/gallery.html",
     "/funny.html",
     "/css/bootstrap.min.css",
@@ -21,7 +21,7 @@ var urlsToCache = [
     "/gallery/han-solo.jpg",
     "/gallery/chewbacca.jpg"
 ];
- 
+
 urlsToCache = urlsToCache.map(x => baseUrl + x);
 
 self.addEventListener('install', function(event) {
@@ -36,12 +36,47 @@ self.addEventListener('install', function(event) {
     );
 });
 
+function fromCacheOrFetch(response) {
+
+    if (response) {
+        return response; //veio do cache
+    }
+
+    //clonando a requisição
+    //pois pode ser consumido apenas uma vez
+    //então precisamos de duas, uma para o browser e uma para o cache
+    var fetchRequest = event.request.clone();
+
+    return fetch(fetchRequest).then(function() {
+
+        //qualquer exceção, que não deve ser cacheada
+        if (!response || response.status !== 200 || response.type !== 'basic') {
+            return response;
+        }
+
+        //clonando a response, pois apenas uma pode ser consumida
+        var responseToCache = response.clone();
+
+        caches.open(CACHE_NAME)
+            .then(function(cache) {
+                cache.put(event.request, responseToCache);
+            });
+
+        return response;
+
+    });
+
+}
+
+
 self.addEventListener('fetch', function(event) {
     console.log("fetch intercepted");
+
     event.respondWith(
-        caches.match(event.request).then(function(response) {
-            return response || fetch(event.request);
-        })
+
+        caches.match(event.request)
+            .then(fromCacheOrFetch)
+
     );
-    
+
 });
