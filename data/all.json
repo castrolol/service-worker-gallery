@@ -1,0 +1,44 @@
+{
+    "photos" : [
+        { 
+            "title": "Catatine",
+            "image": "gallery/catatine.jpg"
+        },
+        { 
+            "title": "Cath Vader",
+            "image": "gallery/cath-vader.jpg"
+        },
+        { 
+            "title": "Jedy",
+            "image": "gallery/phith.jpg"
+        },
+        { 
+            "title": "Dog Force",
+            "image": "gallery/jedi.jpg"
+        },
+        { 
+            "title": "PugLeia",
+            "image": "gallery/pugleia.jpg"
+        },
+         { 
+            "title": "Princesa Leia",
+            "image": "gallery/leia.jpg"
+        },
+        { 
+            "title": "Antes e Depois",
+            "image": "gallery/antes-e-depois.jpg"
+        },
+        { 
+            "title": "Rey",
+            "image": "gallery/rey.jpg"
+        },
+        { 
+            "title": "Han Solo",
+            "image": "gallery/han-solo.jpg"
+        },
+        { 
+            "title": "Chewie",
+            "image": "gallery/chewbacca.jpg"
+        }
+    ]
+}

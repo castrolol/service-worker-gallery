@@ -2,6 +2,7 @@ var CACHE_NAME = 'talk-cache';
 var baseUrl = "/service-worker-gallery";
 var urlsToCache = [
     "/index.html",
+    "/all.html",
     "/gallery.html",
     "/funny.html",
     "/css/bootstrap.min.css",
@@ -24,17 +25,16 @@ self.addEventListener('install', function(event) {
     );
 });
 
-function fromCacheOrFetch(event, response) {
+function fromCacheOrFetch(event, cached) {
 
-    if (response) {
+    if (cached) {
         //se não for da API ou se está offline
-        if (!event.request.url.match("castrolol.com/talk-api") || !navigator.onLine) {
-            return response; //veio do cache            
+        if (!event.request.url.match("json$") || !navigator.onLine) {
+            return cached; //veio do cache            
         }
-
     }
 
-    if (!navigator.onLine && event.request.url.match("castrolol.com/talk-api")) {
+    if (!navigator.onLine && event.request.url.match("json$")) {
         return new Response('{ "photos": [] }', {
             headers: { 'Content-Type': 'application/json' }
         })
@@ -69,13 +69,10 @@ function fromCacheOrFetch(event, response) {
 
 
 self.addEventListener('fetch', function(event) {
-    console.log("fetch intercepted");
 
     event.respondWith(
-
         caches.match(event.request)
             .then(fromCacheOrFetch.bind(this, event))
-
     );
 
 });
