@@ -26,6 +26,13 @@
         <img src="./loader.gif" />
     </div>
 
+    <div id="offline-alert" class="alert alert-dismissible alert-warning" style="display: none; margin: 16px;">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4>Aviso!</h4>
+        <p>Você não está conectado à internet, não foi possivel buscar novas imagens.</p>
+    </div>
+
+
     <div class="photo-container">
 
     </div>
@@ -45,7 +52,7 @@
 
     <script src="./js/app.js"></script>
     <script>
-        gallery.load("./data/gallery.json");
+        gallery.load("http://castrolol.com/talk-api/gallery.php?category=main");
     </script>
 
 </body>

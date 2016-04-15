@@ -1,4 +1,4 @@
-if ('serviceWorker' in navigator) {
+if ('serviceWorker' in navigator && navigator.onLine) {
     
     navigator.serviceWorker.register('cache-service.js').then(function(registration) {
  

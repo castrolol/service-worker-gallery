@@ -1,4 +1,4 @@
-var CACHE_NAME = 'v1';
+var CACHE_NAME = 'talk-cache';
 var baseUrl = "/service-worker-gallery";
 var urlsToCache = [
     "/index.html",
@@ -7,19 +7,7 @@ var urlsToCache = [
     "/css/bootstrap.min.css",
     "/fonts/glyphicons-halflings-regular.woff2",
     "/loader.gif",
-    "/js/app.js",
-    "/js/install-service.js",
-    "/cache-service.js",
-    "/gallery/catatine.jpg",
-    "/gallery/cath-vader.jpg",
-    "/gallery/phith.jpg",
-    "/gallery/jedi.jpg",
-    "/gallery/pugleia.jpg",
-    "/gallery/leia.jpg",
-    "/gallery/antes-e-depois.jpg",
-    "/gallery/rey.jpg",
-    "/gallery/han-solo.jpg",
-    "/gallery/chewbacca.jpg"
+    "/js/app.js" 
 ];
 
 urlsToCache = urlsToCache.map(x => baseUrl + x);
@@ -39,8 +27,19 @@ self.addEventListener('install', function(event) {
 function fromCacheOrFetch(event, response) {
 
     if (response) {
-        return response; //veio do cache
+        //se não for da API ou se está offline
+        if (!event.request.url.match("castrolol.com/talk-api") || !navigator.onLine) {
+            return response; //veio do cache            
+        }
+
     }
+
+    if (!navigator.onLine && event.request.url.match("castrolol.com/talk-api")) {
+        return new Response('{ "photos": [] }', {
+            headers: { 'Content-Type': 'application/json' }
+        })
+    }
+
 
     //clonando a requisição
     //pois pode ser consumido apenas uma vez
@@ -50,7 +49,7 @@ function fromCacheOrFetch(event, response) {
     return fetch(fetchRequest).then(function(response) {
 
         //qualquer exceção, que não deve ser cacheada
-        if (!response || response.status !== 200 || response.type !== 'basic') {
+        if (!response || response.status !== 200  ) {
             return response;
         }
 

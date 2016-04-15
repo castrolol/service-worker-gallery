@@ -18,12 +18,18 @@
             element.querySelector(".photo").src = photo.image;
             element.querySelector("h3").textContent = photo.title;
             this.container.appendChild(element);
-            
+
         });
 
     }
 
     Gallery.prototype.load = function(url) {
+
+        if (!navigator.onLine) {
+            document.querySelector(".loader").innerHTML = "";
+            var offline = document.querySelector("#offline-alert");
+            if(offline) offline.style.display = "block";    
+        }
 
         document.querySelector(".loader").style.display = "block";
 
