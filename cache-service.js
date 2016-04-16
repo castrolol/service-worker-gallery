@@ -29,12 +29,12 @@ function fromCacheOrFetch(event, cached) {
 
     if (cached) {
         //se não for da API ou se está offline
-        if (!event.request.url.match("json$") || !navigator.onLine) {
+        if (!event.request.url.match(/\.php/) || !navigator.onLine) {
             return cached; //veio do cache            
         }
     }
 
-    if (!navigator.onLine && event.request.url.match("json$")) {
+    if (!navigator.onLine && event.request.url.match(/\.php/)) {
         return new Response('{ "photos": [] }', {
             headers: { 'Content-Type': 'application/json' }
         })
